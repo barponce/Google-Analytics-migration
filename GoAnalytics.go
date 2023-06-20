@@ -12,15 +12,17 @@ import (
 )
 
 const (
-	scopes           = "https://www.googleapis.com/auth/analytics.readonly"
-	keyFileLocation  = "pablo-testing-382714-307479c4bad3.json"
-	viewID           = "<>" // Replace with the desired Analytics Property ID View
-	dateRangeStart   = "30daysAgo"
-	dateRangeEnd     = "yesterday"
-	sessions         = "ga:sessions"
-	users            = "ga:users"
-	conversionRate   = "ga:goal8ConversionRate"
-	requestValue     = "ga:goal8Value"
+	scopes          = "https://www.googleapis.com/auth/analytics.readonly"
+	keyFileLocation = "pablo-testing-382714-307479c4bad3.json"
+	viewID          = "<>" // Replace with the desired Analytics Property ID View
+	dateRangeStart  = "30daysAgo"
+	dateRangeEnd    = "yesterday"
+	sessions        = "ga:sessions"
+	users           = "ga:users"
+	requestsCr      = "ga:goal8ConversionRate"
+	requestValue    = "ga:goal8Value"
+	requests        = "ga:goal8Completions"
+
 	dimensionDate    = "ga:date"
 	dimensionChannel = "ga:channelGrouping"
 )
@@ -65,10 +67,13 @@ func getReport(service *analyticsreporting.Service) (*analyticsreporting.GetRepo
 						Expression: users,
 					},
 					{
-						Expression: conversionRate,
+						Expression: requestsCr,
 					},
 					{
 						Expression: requestValue,
+					},
+					{
+						Expression: requests,
 					},
 				},
 				Dimensions: []*analyticsreporting.Dimension{
